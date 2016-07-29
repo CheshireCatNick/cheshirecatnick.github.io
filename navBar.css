@@ -11,6 +11,7 @@
 	position: fixed;
 	top: 0;
 	width: 100%;
+	opacity: 0.9;
 }
 
 .navBar li {
@@ -30,7 +31,7 @@
 }
 
 .navBar li a:hover {
-	background-color: #333;
+	background-color: #008CBA;
 }
 
 .navbar .active {

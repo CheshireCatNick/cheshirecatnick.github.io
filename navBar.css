@@ -1,0 +1,39 @@
+.navBar {
+	-webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+
+	list-style-type: none;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	background-color: #555;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.navBar li {
+	float: right;
+	display: inline;
+
+}
+
+.navBar li a {
+	display: block;
+	color: white;
+	padding: 14px 16px;
+	font-family: sans-serif;
+	font-size: 20px;
+	transition: 0.3s;
+	text-decoration: none;
+}
+
+.navBar li a:hover {
+	background-color: #333;
+}
+
+.navbar .active {
+	background-color: #008CBA;
+
+}

@@ -31,7 +31,7 @@ includeHTML();
 	function move() {
     var elem = document.getElementsByClassName("inProgress");
     var width = 1;
-    var id = setInterval(frame, 10);
+    var id = setInterval(frame, 30);
     function frame() {
         if (width >= 100) {
             clearInterval(id);
@@ -42,7 +42,7 @@ includeHTML();
         }
     }
 }
-setInterval(move, 2000);
+setInterval(move, 8000);
 </script>
 </body>
 </html>

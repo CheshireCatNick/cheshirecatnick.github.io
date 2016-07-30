@@ -18,8 +18,11 @@
     background-color: #43A047;
     border-radius: 100px;
     text-align: center;
+}
 
-
+span {
+	position: absolute;
+	left: 400px;
 }
 
 </style>
@@ -28,10 +31,10 @@
 <h1>Skill</h1>
 <div id="programmingLanguage">
 	<h3>Programming language</h3>
-	<div class="outProgress"><div class="inProgress" style="width: 90%">C / C++</div></div>
-	<div class="outProgress"><div class="inProgress" style="width: 90%">Java</div></div>
-	<div class="outProgress"><div class="inProgress" style="width: 80%; background-color: #FFEB3B">Python</div></div>
-	<div class="outProgress"><div class="inProgress" style="width: 70%; background-color: #FF9800">HTML / CSS / Javascript</div></div>
+	<div class="outProgress"><div class="inProgress" style=""><span>C / C++</span></div></div>
+	<div class="outProgress"><div class="inProgress" style=""><span>Java</span></div></div>
+	<div class="outProgress"><div class="inProgress" style="background-color: #FFEB3B"><span>Python</span></div></div>
+	<div class="outProgress"><div class="inProgress" style="background-color: #FF9800"><span>HTML / CSS / Javascript</span></div></div>
 </div>
 <div class="subContent" id="otherSkill">
 	<h3>Other skill</h3>
@@ -44,22 +47,5 @@
 	<li>Software-defined network</li>
 	</ul>
 </div>
-
-<script type="text/javascript">
-	function move() {
-    var elem = document.getElementById("inProgress");
-    var width = 1;
-    var id = setInterval(frame, 100);
-    function frame() {
-        if (width >= 100) {
-            clearInterval(id);
-        } else {
-            width++;
-            elem.style.width = width + '%';
-        }
-    }
-}
-setInterval(move, 3000);
-</script>
 </body>
 </html>

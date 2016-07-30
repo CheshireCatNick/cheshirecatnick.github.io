@@ -27,6 +27,22 @@
 
 <script>
 includeHTML();
+
+	function move() {
+    var elem = document.getElementsByClassName("inProgress");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width += 0.5;
+            for (i = 0; i < elem.length; i++)
+            	elem[i].style.width = width + '%';
+        }
+    }
+}
+setInterval(move, 2000);
 </script>
 </body>
 </html>

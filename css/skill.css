@@ -4,5 +4,20 @@
 }
 
 #skill li {
-	font-size: 20px;
+	font-size: 30px;
+}
+
+#skill #programmingLanguage{
+
+	padding: 30px;
+	display: inline-block;
+	vertical-align: top;
+	width: 50%;
+
+}
+
+#skill #otherSkill{
+
+	background-color: #FDD835;
+
 }

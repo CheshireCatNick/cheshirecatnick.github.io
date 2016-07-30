@@ -28,21 +28,32 @@
 <script>
 includeHTML();
 
-	function move() {
-    var elem = document.getElementsByClassName("inProgress");
-    var width = 1;
-    var id = setInterval(frame, 30);
-    function frame() {
-        if (width >= 100) {
-            clearInterval(id);
-        } else {
-            width += 0.5;
-            for (i = 0; i < elem.length; i++)
-            	elem[i].style.width = width + '%';
-        }
-    }
+function moveProgressBar(){
+	var C = document.getElementById("C");
+	var J = document.getElementById("java");
+	var P = document.getElementById("python");
+	var H = document.getElementById("html");
+
+	var maxC = 90, maxJ = 90, maxP = 80, maxH = 70;
+
+	var width = 1;
+	var timer = setInterval(frame, 30);
+
+	// need to calculate speed here
+	function frame(){
+		if (width >= 80)
+			clearInterval(timer);
+		else {
+			width += 0.5;
+			C.style.width = width + '%';
+			J.style.width = width + '%';
+			P.style.width = width + '%';
+			H.style.width = width + '%';
+		}
+	}
 }
-setInterval(move, 8000);
+
+setInterval(moveProgressBar, 8000);
 </script>
 </body>
 </html>

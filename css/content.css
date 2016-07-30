@@ -5,7 +5,7 @@
 
     margin: auto;
     margin-top: 30px;
-	padding: 30px;
+	padding: 20px;
 	height: 800px;
 	width: 80%;
 	font-family: sans-serif;
@@ -18,7 +18,7 @@
     -moz-box-shadow: 8px 8px 20px -6px #888;
     box-shadow: 8px 8px 20px -6px #888;
     margin: auto;
-	padding: 30px;
+	padding: 20px;
 	display: inline-block;
 	vertical-align: top;
 	border-radius: 3px;

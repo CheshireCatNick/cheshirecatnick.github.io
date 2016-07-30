@@ -4,20 +4,20 @@
 <style>
 .outProgress {
 	-webkit-box-shadow: 8px 8px 20px -6px #888;
-    -moz-box-shadow: 8px 8px 20px -6px #888;
-    box-shadow: 8px 8px 20px -6px #888;
+	-moz-box-shadow: 8px 8px 20px -6px #888;
+	box-shadow: 8px 8px 20px -6px #888;
 	margin: 35px;
-    width: 80%;
-    height: 35px;
-    background-color: #E0E0E0;
-    border-radius: 100px;
+	width: 90%;
+	height: 35px;
+	background-color: #E0E0E0;
+	border-radius: 100px;
 }
 .inProgress {
-	font-size: 30px;
-    height: 100%;
-    background-color: #43A047;
-    border-radius: 100px;
-    text-align: center;
+	font-size: 25px;
+	height: 100%;
+	background-color: #43A047;
+	border-radius: 100px;
+	text-align: center;
 }
 
 span {
@@ -31,10 +31,26 @@ span {
 <h1>Skill</h1>
 <div id="programmingLanguage">
 	<h3>Programming language</h3>
-	<div class="outProgress"><div class="inProgress" style=""><span>C / C++</span></div></div>
-	<div class="outProgress"><div class="inProgress" style=""><span>Java</span></div></div>
-	<div class="outProgress"><div class="inProgress" style="background-color: #FFEB3B"><span>Python</span></div></div>
-	<div class="outProgress"><div class="inProgress" style="background-color: #FF9800"><span>HTML / CSS / Javascript</span></div></div>
+	<div class="outProgress">
+		<div class="inProgress" id="C" style="width: 90%">
+			<span>C / C++</span>
+		</div>
+	</div>
+	<div class="outProgress">
+		<div class="inProgress" id="java" style="width: 90%">
+			<span>Java</span>
+		</div>
+	</div>
+	<div class="outProgress">
+		<div class="inProgress" id="python" style="width: 80%; background-color: #FFEB3B">
+			<span>Python</span>
+		</div>
+	</div>
+	<div class="outProgress">
+		<div class="inProgress" id="html" style="width: 70%; background-color: #FF9800">
+			<span>HTML / CSS / Javascript</span>
+		</div>
+	</div>
 </div>
 <div class="subContent" id="otherSkill">
 	<h3>Other skill</h3>

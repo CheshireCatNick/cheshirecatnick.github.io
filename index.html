@@ -2,39 +2,29 @@
 <html>
 <head>
 <title>Nicky's Website</title>
-<link rel="stylesheet" type="text/css" href="navBar.css">
+<meta charset="UTF-8"> 
+<link rel="stylesheet" type="text/css" href="./css/navBar.css" />
+<link rel="stylesheet" type="text/css" href="./css/content.css" />
+<script src="js/include.js"></script>
 <style>
-
-
-div {
-	padding-top: 50px;
-	height: 300px;
-	width: 100%;
-	border-style: dotted;
-
-}
 
 </style>
 <script>
-// alert('here');
+
 </script>
 </head>
 
 <body>
+<div include-html="./html/navBar.html"></div>
 
-<ul class="navBar">
-	<li style="float: left"><a href="#home">Home</a></li>
-	<li><a href="#contact">Contact</a></li>
-	<li><a href="#project">Project</a></li>
-	<li><a href="#experience">Experience</a></li>
-	<li><a href="#skill">Skill</a></li>
-</ul>
+<div class="content" id="home">Home</div>
+<div class="content" id="skill" include-html="./html/skill.html"></div>
+<div class="content" id="experience">Experience</div>
+<div class="content" id="project">Project</div>
+<div class="content" id="contact">Contact</div>
 
-<div id="home">Home</div>
-<div id="skill">Skill</div>
-<div id="experience">Experience</div>
-<div id="project">Project</div>
-<div id="contact">Contact</div>
-
+<script>
+includeHTML();
+</script>
 </body>
 </html>

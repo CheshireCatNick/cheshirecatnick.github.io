@@ -17,7 +17,6 @@
 .navBar li {
 	float: right;
 	display: inline;
-
 }
 
 .navBar li a {
@@ -36,5 +35,4 @@
 
 .navbar .active {
 	background-color: #008CBA;
-
 }

@@ -2,8 +2,25 @@
 <html>
 <head>
 <style>
+.outProgress {
+	-webkit-box-shadow: 8px 8px 20px -6px #888;
+    -moz-box-shadow: 8px 8px 20px -6px #888;
+    box-shadow: 8px 8px 20px -6px #888;
+	margin: 35px;
+    width: 80%;
+    height: 35px;
+    background-color: #E0E0E0;
+    border-radius: 100px;
+}
+.inProgress {
+	font-size: 30px;
+    height: 100%;
+    background-color: #43A047;
+    border-radius: 100px;
+    text-align: center;
 
 
+}
 
 </style>
 </head>
@@ -11,10 +28,10 @@
 <h1>Skill</h1>
 <div id="programmingLanguage">
 	<h3>Programming language</h3>
-	<div class="outProgress"><div id="inProgress">C / C++ (90%)</div></div>
-	<div class="outProgress">Java (90%)</div>
-	<div class="outProgress">Python (80%)</div>
-	<div class="outProgress">Html / CSS / Javascript (70%)</div>
+	<div class="outProgress"><div class="inProgress" style="width: 90%">C / C++</div></div>
+	<div class="outProgress"><div class="inProgress" style="width: 90%">Java</div></div>
+	<div class="outProgress"><div class="inProgress" style="width: 80%; background-color: #FFEB3B">Python</div></div>
+	<div class="outProgress"><div class="inProgress" style="width: 70%; background-color: #FF9800">HTML / CSS / Javascript</div></div>
 </div>
 <div class="subContent" id="otherSkill">
 	<h3>Other skill</h3>
@@ -27,5 +44,22 @@
 	<li>Software-defined network</li>
 	</ul>
 </div>
+
+<script type="text/javascript">
+	function move() {
+    var elem = document.getElementById("inProgress");
+    var width = 1;
+    var id = setInterval(frame, 100);
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+        } else {
+            width++;
+            elem.style.width = width + '%';
+        }
+    }
+}
+setInterval(move, 3000);
+</script>
 </body>
 </html>

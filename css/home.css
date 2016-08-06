@@ -2,5 +2,41 @@
 	background-color: #3b5999;
 	margin-top: 60px;
 	color: white;
+	height: 600px;
+}
+#home .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	border-radius: 3px;
+	padding: 0px;
+	width: 400px;
+    transition: 0.3s;
+    display: inline-block;
+    float: right;
+    margin-right: 200px;
 }
 
+#home .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+#home .container {
+
+	border-radius: 3px;
+	height: 80px;
+    color: black;
+    width: 400px;
+	/*border: solid 3px;*/
+}
+
+#home img {
+	border-radius: 3px;
+	height: 400px;
+	width: 400px;
+	margin: 0px;
+
+}
+
+#home h1 {
+	display: inline-block;
+	vertical-align: top;
+}

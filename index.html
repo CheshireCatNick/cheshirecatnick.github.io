@@ -3,17 +3,18 @@
 <head>
 <title>Nicky's Website</title>
 <meta charset="UTF-8"> 
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="./css/navBar.css" />
 <link rel="stylesheet" type="text/css" href="./css/content.css" />
 <link rel="stylesheet" type="text/css" href="./css/home.css" />
 <link rel="stylesheet" type="text/css" href="./css/skill.css" />
-<script src="js/include.js"></script>
+
+<link rel="stylesheet" type="text/css" href="./css/project.css" />
+
+<script src="./js/include.js"></script>
 <style>
 
 </style>
-<script>
-
-</script>
 </head>
 
 <body>
@@ -22,11 +23,27 @@
 <div class="content" id="home" include-html="./html/home.html"></div>
 <div class="content" id="skill" include-html="./html/skill.html"></div>
 <div class="content" id="experience">Experience</div>
-<div class="content" id="project" style="background-color: #f39c12">Project</div>
-<div class="content" id="contact" style="background-color: #4527A0">Contact</div>
+<div class="content" id="project" include-html="./html/project.html"></div>
+<div class="content" id="contact" style="background-color: #4c75a3">Contact</div>
 
 <script>
 includeHTML();
+
+var timer;
+function addWidth(C, J, P, H, CDelta, JDelta, PDelta, HDelta, maxC){
+	var	CWidth = parseFloat(C.style.width);
+	var	JWidth = parseFloat(J.style.width);
+	var	PWidth = parseFloat(P.style.width);
+	var	HWidth = parseFloat(H.style.width);
+	if (CWidth >= maxC){
+		clearInterval(timer);
+		return;
+	}
+	C.style.width = CWidth + CDelta + '%';
+	J.style.width = JWidth + JDelta + '%';
+	P.style.width = PWidth + PDelta + '%';
+	H.style.width = HWidth + HDelta + '%';
+}
 
 function moveProgressBar(){
 	var C = document.getElementById("C");
@@ -35,25 +52,24 @@ function moveProgressBar(){
 	var H = document.getElementById("html");
 
 	var maxC = 90, maxJ = 90, maxP = 80, maxH = 70;
+	
+	var width;
+	var animationTime = 4000;
+	var addWidthPeriod = 30;
+	var addWidthNum = animationTime / addWidthPeriod;
+	var CDelta = maxC / addWidthNum;
+	var JDelta = maxJ / addWidthNum;
+	var PDelta = maxP / addWidthNum;
+	var HDelta = maxH / addWidthNum;
 
-	var width = 1;
-	var timer = setInterval(frame, 30);
-
-	// need to calculate speed here
-	function frame(){
-		if (width >= 80)
-			clearInterval(timer);
-		else {
-			width += 0.5;
-			C.style.width = width + '%';
-			J.style.width = width + '%';
-			P.style.width = width + '%';
-			H.style.width = width + '%';
-		}
-	}
+	C.style.width = '1%';
+	J.style.width = '1%';
+	P.style.width = '1%';
+	H.style.width = '1%';
+	timer = setInterval(function(){addWidth(C, J, P, H, CDelta, JDelta, PDelta, HDelta, maxC);}, addWidthPeriod);
 }
-
-setInterval(moveProgressBar, 8000);
+var timePeriod = 8000;
+setInterval(moveProgressBar, timePeriod);
 </script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+#project {
+	background-color: #27ae60;
+	height: auto;
+}
+#project ul {
+	list-style-type: none;
+}
+#project li {
+	font-size: 20px;
+}
+#project a {
+	text-decoration: none;
+	color: #000;
+}

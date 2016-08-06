@@ -17,14 +17,14 @@
 </style>
 </head>
 
-<body>
+<body style="margin: 0;">
 <div include-html="./html/navBar.html"></div>
 
 <div class="content" id="home" include-html="./html/home.html"></div>
 <div class="content" id="skill" include-html="./html/skill.html"></div>
 <div class="content" id="experience">Experience</div>
 <div class="content" id="project" include-html="./html/project.html"></div>
-<div class="content" id="contact" style="background-color: #4c75a3">Contact</div>
+<div class="content" id="contact" style="background-color: #008CBA">Contact</div>
 
 <script>
 includeHTML();
@@ -39,10 +39,10 @@ function addWidth(C, J, P, H, CDelta, JDelta, PDelta, HDelta, maxC){
 		clearInterval(timer);
 		return;
 	}
-	C.style.width = CWidth + CDelta + '%';
-	J.style.width = JWidth + JDelta + '%';
-	P.style.width = PWidth + PDelta + '%';
-	H.style.width = HWidth + HDelta + '%';
+	C.style.width = CWidth + CDelta + "%";
+	J.style.width = JWidth + JDelta + "%";
+	P.style.width = PWidth + PDelta + "%";
+	H.style.width = HWidth + HDelta + "%";
 }
 
 function moveProgressBar(){
@@ -53,7 +53,6 @@ function moveProgressBar(){
 
 	var maxC = 90, maxJ = 90, maxP = 80, maxH = 70;
 	
-	var width;
 	var animationTime = 4000;
 	var addWidthPeriod = 30;
 	var addWidthNum = animationTime / addWidthPeriod;
@@ -62,10 +61,10 @@ function moveProgressBar(){
 	var PDelta = maxP / addWidthNum;
 	var HDelta = maxH / addWidthNum;
 
-	C.style.width = '1%';
-	J.style.width = '1%';
-	P.style.width = '1%';
-	H.style.width = '1%';
+	C.style.width = "1%";
+	J.style.width = "1%";
+	P.style.width = "1%";
+	H.style.width = "1%";
 	timer = setInterval(function(){addWidth(C, J, P, H, CDelta, JDelta, PDelta, HDelta, maxC);}, addWidthPeriod);
 }
 var timePeriod = 8000;

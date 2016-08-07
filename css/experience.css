@@ -1,0 +1,15 @@
+#experience {
+	background-color: #1abc9c;
+	height: auto;
+}
+#experience ul {
+	list-style-type: none;
+}
+#experience li {
+	font-size: 20px;
+}
+#experience a {
+	text-decoration: none;
+	outline: 0;
+	color: #0D47A1;
+}

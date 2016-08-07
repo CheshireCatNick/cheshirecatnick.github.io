@@ -10,5 +10,6 @@
 }
 #project a {
 	text-decoration: none;
+	outline: 0;
 	color: #0D47A1;
 }

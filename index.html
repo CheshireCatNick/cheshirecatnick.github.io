@@ -10,8 +10,10 @@
 <link rel="stylesheet" type="text/css" href="./css/skill.css" />
 <link rel="stylesheet" type="text/css" href="./css/experience.css" />
 <link rel="stylesheet" type="text/css" href="./css/project.css" />
+<link rel="stylesheet" type="text/css" href="./css/contact.css" />
 
 <script src="./js/include.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <style>
 
 </style>
@@ -24,7 +26,7 @@
 <div class="content" id="skill" include-html="./html/skill.html"></div>
 <div class="content" id="experience" include-html="./html/experience.html"></div>
 <div class="content" id="project" include-html="./html/project.html"></div>
-<div class="content" id="contact" style="background-color: #008CBA">Contact</div>
+<div class="content" id="contact" include-html="./html/contact.html"></div>
 
 <script>
 includeHTML();
@@ -69,6 +71,16 @@ function moveProgressBar(){
 }
 var timePeriod = 8000;
 setInterval(moveProgressBar, timePeriod);
+
+var ip = "127.0.0.1";
+var port = 2147;
+var socket = io.connect("http://" + ip + ":" + port);
+function send(){
+	var content = document.getElementById("content").value;
+
+	socket.emit("sendEmail", content);
+	alert("Your email has been sent.  I'll reply ASAP. Thanks for your contact!");
+}
 </script>
 </body>
 </html>

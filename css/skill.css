@@ -18,7 +18,7 @@
 #skill #otherSkill{
 	padding-top: 15px;
 	padding-bottom: 60px;
-	margin-left: 60px;
+	margin-left: 20px;
 	background-color: #FDD835;
 
 }
@@ -29,7 +29,7 @@
 	box-shadow: 0px 3px 5px 0px #000;
 
 	margin: 35px;
-	width: 90%;
+	width: 60%;
 	height: 25px;
 	background-color: #EEEEEE;
 	border-radius: 100px;

@@ -38,7 +38,7 @@ setInterval(moveProgressBar, timePeriod);
 
 var ip = "140.112.30.34";
 var port = 2147;
-var socket = io.connect("http://" + ip + ":" + port);
+var socket = io.connect("https://" + ip + ":" + port);
 function send(){
 	var name = document.getElementById("name").value;
 	var emailAddress = document.getElementById("emailAddress").value;

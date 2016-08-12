@@ -38,14 +38,17 @@ setInterval(moveProgressBar, timePeriod);
 
 var ip = "140.112.30.34";
 var port = 2147;
-var socket = io.connect("https://" + ip + ":" + port);
+var socket = io.connect("http://" + ip + ":" + port);
 function send(){
 	var name = document.getElementById("name").value;
 	var emailAddress = document.getElementById("emailAddress").value;
 	var content = document.getElementById("content").value;
-
-	socket.emit("sendEmail", name, emailAddress, content);
-	alert("Your message has been sent.  I'll reply ASAP. Thanks for your contact!");
+	if (socket.connected){
+		socket.emit("sendEmail", name, emailAddress, content);
+		alert("Your message has been sent.  I'll reply ASAP. Thanks for your contact!");
+	}
+	else
+		alert("Sorry. My mail sender is down : (\nPlease send your message to CheshireCatNick@gmail.com");
 }
 </script>
 </body>

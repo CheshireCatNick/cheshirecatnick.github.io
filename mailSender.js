@@ -3,7 +3,19 @@ var port = 2147;
 
 var nodemailer = require("nodemailer");
 var transporter = nodemailer.createTransport("smtps://cheshirecatnick%40gmail.com:st55330066@smtp.gmail.com");
+/*
+// for https
+var fs = require("fs");
+var options = {
+			key: fs.readFileSync("./httpsFiles/privateKey.pem"),
+			cert: fs.readFileSync("./httpsFiles/cert.pem")
+		};
 
+var server = require("https").createServer(options, function(req, res){
+	res.writeHead(200);
+	res.end("Hello world\n");
+});
+*/
 var server = require("http").createServer();
 server.listen(port, ip);
 var io = require("socket.io").listen(server);

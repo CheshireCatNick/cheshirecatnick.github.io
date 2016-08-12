@@ -22,7 +22,7 @@ function moveProgressBar(){
 
 	var maxC = 90, maxJ = 90, maxP = 80, maxH = 70;
 	
-	var animationTime = 4000;
+	var animationTime = 5000;
 	var addWidthPeriod = 30;
 	var addWidthNum = animationTime / addWidthPeriod;
 	var CDelta = maxC / addWidthNum;

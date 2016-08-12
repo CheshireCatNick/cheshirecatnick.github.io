@@ -39,8 +39,15 @@ setInterval(moveProgressBar, timePeriod);
 var ip = "140.112.30.34";
 var port = 2147;
 var socket = io.connect("http://" + ip + ":" + port);
-socket.on("sendResult", function(reply){
-	alert(reply);
+socket.on("sendResult", function(result){
+	if (result == "success"){
+		alert("Your message has been sent. I'll reply ASAP. Thanks for your contact!");
+		document.getElementById("name").value = "";
+		document.getElementById("emailAddress").value = "";
+		document.getElementById("content").value = "";
+	}
+	else
+		alert("You sent too many emails today. Come back tomorrow : )");
 });
 function send(){
 	var name = document.getElementById("name").value;

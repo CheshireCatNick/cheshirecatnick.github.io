@@ -42,7 +42,7 @@ function moveProgressBar(){
 
 function startProgressBar(){
 	moveProgressBar();
-	var timePeriod = 10000;
+	var timePeriod = 8000;
 	setInterval(moveProgressBar, timePeriod);
 }
 

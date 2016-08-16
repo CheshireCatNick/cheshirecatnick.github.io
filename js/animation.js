@@ -1,12 +1,24 @@
 // animation for progress bar
 var progressBarTimer;
-function addWidth(C, J, P, H, CDelta, JDelta, PDelta, HDelta, maxC){
+var C, J, P, H;
+var maxC = 90, maxJ = 90, maxP = 80, maxH = 70;
+var animationTime = 4000;
+var addWidthPeriod = 40;
+var addWidthNum = animationTime / addWidthPeriod;
+var CDelta = maxC / addWidthNum;
+var JDelta = maxJ / addWidthNum;
+var PDelta = maxP / addWidthNum;
+var HDelta = maxH / addWidthNum;
+var animationPeriod = 5000;
+
+function addWidth(){
 	var	CWidth = parseFloat(C.style.width);
 	var	JWidth = parseFloat(J.style.width);
 	var	PWidth = parseFloat(P.style.width);
 	var	HWidth = parseFloat(H.style.width);
 	if (CWidth >= maxC){
 		clearInterval(progressBarTimer);
+		setTimeout(moveProgressBar, animationPeriod);
 		return;
 	}
 	C.style.width = CWidth + CDelta + "%";
@@ -14,36 +26,19 @@ function addWidth(C, J, P, H, CDelta, JDelta, PDelta, HDelta, maxC){
 	P.style.width = PWidth + PDelta + "%";
 	H.style.width = HWidth + HDelta + "%";
 }
-
 function moveProgressBar(){
-	var C = document.getElementById("C");
-	var J = document.getElementById("java");
-	var P = document.getElementById("python");
-	var H = document.getElementById("html");
-
-	var maxC = 90, maxJ = 90, maxP = 80, maxH = 70;
-	
-	var animationTime = 4000;
-	var addWidthPeriod = 40;
-	var addWidthNum = animationTime / addWidthPeriod;
-	var CDelta = maxC / addWidthNum;
-	var JDelta = maxJ / addWidthNum;
-	var PDelta = maxP / addWidthNum;
-	var HDelta = maxH / addWidthNum;
-
 	C.style.width = "1%";
 	J.style.width = "1%";
 	P.style.width = "1%";
 	H.style.width = "1%";
-	progressBarTimer = setInterval(function(){
-				addWidth(C, J, P, H, CDelta, JDelta, PDelta, HDelta, maxC);
-			}, addWidthPeriod);
+	progressBarTimer = setInterval(addWidth, addWidthPeriod);
 }
-
 function startProgressBar(){
+	C = document.getElementById("C");
+	J = document.getElementById("java");
+	P = document.getElementById("python");
+	H = document.getElementById("html");
 	moveProgressBar();
-	var timePeriod = 8000;
-	setInterval(moveProgressBar, timePeriod);
 }
 
 // animation for show notification

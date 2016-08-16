@@ -23,8 +23,8 @@ function moveProgressBar(){
 
 	var maxC = 90, maxJ = 90, maxP = 80, maxH = 70;
 	
-	var animationTime = 5000;
-	var addWidthPeriod = 30;
+	var animationTime = 4000;
+	var addWidthPeriod = 40;
 	var addWidthNum = animationTime / addWidthPeriod;
 	var CDelta = maxC / addWidthNum;
 	var JDelta = maxJ / addWidthNum;
@@ -70,10 +70,12 @@ function showNotification(msg, type){
 // animation for typing
 var stringIndex = 0, wordIndex = 0, blinkCount = 0;
 var typeTimer, backTimer, stayTimer;
-var strings = ["this is string1", "this is string2"];
+var strings = ["this is my typing animation ｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡",
+				"spent me a whole afternoon working on it (#`Д´)ﾉ",
+				"better use others package next time...(๑•́ ₃ •̀๑)"];
 var charArray;
 var typeDisplayer;
-var addWordPeriod = 300, removeWordPeriod = 100, blinkPeriod = 500;
+var addWordPeriod = 150, removeWordPeriod = 80, blinkPeriod = 500;
 var blinkTime = 8
 function removeWord(){
 	if (wordIndex == 0){
@@ -93,8 +95,32 @@ function removeWord(){
 		typeDisplayer.innerHTML = tmp;
 		wordIndex--;
 	}
-}
-function stay(){
+}/*
+implement if needed
+function stayStart(){
+	var tmp = typeDisplayer.innerHTML;
+	var len = tmp.length;
+	if (blinkCount == blinkTime){
+		// assert it ends with nothing
+		if (tmp.charAt(len - 1) != '|'){
+			tmp += "|";
+			typeDisplayer.innerHTML = tmp;
+		}
+		blinkCount = 0;
+		backTimer = setInterval(removeWord, removeWordPeriod);
+		clearInterval(stayTimer);
+	}
+	else {
+		// string ends with '|'
+		if (tmp.charAt(len - 1) == '|')
+			tmp = tmp.substring(0, len - 1);
+		else
+			tmp += "|";
+		typeDisplayer.innerHTML = tmp;
+		blinkCount++;
+	}
+}*/
+function stayEnd(){
 	var tmp = typeDisplayer.innerHTML;
 	var len = tmp.length;
 	if (blinkCount == blinkTime){
@@ -119,7 +145,7 @@ function stay(){
 }
 function addWord(){
 	if (wordIndex == charArray.length){
-		stayTimer = setInterval(stay, blinkPeriod);
+		stayTimer = setInterval(stayEnd, blinkPeriod);
 		clearInterval(typeTimer);
 	}
 	else {

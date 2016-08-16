@@ -68,12 +68,13 @@ function showNotification(msg, type){
 }
 
 // animation for typing
-var stringIndex = 0, wordIndex = 0;
-var typeTimer, backTimer;
+var stringIndex = 0, wordIndex = 0, blinkCount = 0;
+var typeTimer, backTimer, stayTimer;
 var strings = ["this is string1", "this is string2"];
 var charArray;
 var typeDisplayer;
-var addWordPeriod = 300, removeWordPeriod = 100;
+var addWordPeriod = 300, removeWordPeriod = 100, blinkPeriod = 500;
+var blinkTime = 8
 function removeWord(){
 	if (wordIndex == 0){
 		typeDisplayer.innerHTML = "";
@@ -93,9 +94,32 @@ function removeWord(){
 		wordIndex--;
 	}
 }
+function stay(){
+	var tmp = typeDisplayer.innerHTML;
+	var len = tmp.length;
+	if (blinkCount == blinkTime){
+		// assert it ends with '|'
+		if (tmp.charAt(len - 1) != '|'){
+			tmp += "|";
+			typeDisplayer.innerHTML = tmp;
+		}
+		blinkCount = 0;
+		backTimer = setInterval(removeWord, removeWordPeriod);
+		clearInterval(stayTimer);
+	}
+	else {
+		// string ends with '|'
+		if (tmp.charAt(len - 1) == '|')
+			tmp = tmp.substring(0, len - 1);
+		else
+			tmp += "|";
+		typeDisplayer.innerHTML = tmp;
+		blinkCount++;
+	}
+}
 function addWord(){
 	if (wordIndex == charArray.length){
-		backTimer = setInterval(removeWord, removeWordPeriod);
+		stayTimer = setInterval(stay, blinkPeriod);
 		clearInterval(typeTimer);
 	}
 	else {
@@ -103,7 +127,7 @@ function addWord(){
 		// remove '|'
 		tmp = tmp.substring(0, tmp.length - 1);
 		// add a char and '|'
-		tmp += charArray[wordIndex] + '|';
+		tmp += charArray[wordIndex] + "|";
 		// put back
 		typeDisplayer.innerHTML = tmp;
 		wordIndex++;

@@ -1,7 +1,7 @@
 // animation for progress bar
 var progressBarTimer;
-var C, J, P, H;
-var maxC = 90, maxJ = 90, maxP = 80, maxH = 70;
+var C, J, P, H, Js;
+var maxC = 90, maxJ = 90, maxP = 80, maxH = 75, maxJs = 65;
 var animationTime = 4000;
 var addWidthPeriod = 40;
 var addWidthNum = animationTime / addWidthPeriod;
@@ -9,6 +9,7 @@ var CDelta = maxC / addWidthNum;
 var JDelta = maxJ / addWidthNum;
 var PDelta = maxP / addWidthNum;
 var HDelta = maxH / addWidthNum;
+var JsDelta = maxJs / addWidthNum;
 var animationPeriod = 5000;
 
 function addWidth(){
@@ -16,6 +17,7 @@ function addWidth(){
 	var	JWidth = parseFloat(J.style.width);
 	var	PWidth = parseFloat(P.style.width);
 	var	HWidth = parseFloat(H.style.width);
+	var	JsWidth = parseFloat(Js.style.width);
 	if (CWidth >= maxC){
 		clearInterval(progressBarTimer);
 		setTimeout(moveProgressBar, animationPeriod);
@@ -25,12 +27,14 @@ function addWidth(){
 	J.style.width = JWidth + JDelta + "%";
 	P.style.width = PWidth + PDelta + "%";
 	H.style.width = HWidth + HDelta + "%";
+	Js.style.width = JsWidth + JsDelta + "%";
 }
 function moveProgressBar(){
 	C.style.width = "1%";
 	J.style.width = "1%";
 	P.style.width = "1%";
 	H.style.width = "1%";
+	Js.style.width = "1%";
 	progressBarTimer = setInterval(addWidth, addWidthPeriod);
 }
 function startProgressBar(){
@@ -38,6 +42,7 @@ function startProgressBar(){
 	J = document.getElementById("java");
 	P = document.getElementById("python");
 	H = document.getElementById("html");
+	Js = document.getElementById("js");
 	moveProgressBar();
 }
 

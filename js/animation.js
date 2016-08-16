@@ -1,11 +1,12 @@
-var timer;
+// animation for progress bar
+var progressBarTimer;
 function addWidth(C, J, P, H, CDelta, JDelta, PDelta, HDelta, maxC){
 	var	CWidth = parseFloat(C.style.width);
 	var	JWidth = parseFloat(J.style.width);
 	var	PWidth = parseFloat(P.style.width);
 	var	HWidth = parseFloat(H.style.width);
 	if (CWidth >= maxC){
-		clearInterval(timer);
+		clearInterval(progressBarTimer);
 		return;
 	}
 	C.style.width = CWidth + CDelta + "%";
@@ -34,14 +35,18 @@ function moveProgressBar(){
 	J.style.width = "1%";
 	P.style.width = "1%";
 	H.style.width = "1%";
-	timer = setInterval(function(){addWidth(C, J, P, H, CDelta, JDelta, PDelta, HDelta, maxC);}, addWidthPeriod);
+	progressBarTimer = setInterval(function(){
+				addWidth(C, J, P, H, CDelta, JDelta, PDelta, HDelta, maxC);
+			}, addWidthPeriod);
 }
 
 function startProgressBar(){
-	var timePeriod = 8000;
+	moveProgressBar();
+	var timePeriod = 10000;
 	setInterval(moveProgressBar, timePeriod);
 }
 
+// animation for show notification
 function showNotification(msg, type){
 	var notification = document.getElementById("notification");
 	notification.className = "show";
@@ -60,4 +65,56 @@ function showNotification(msg, type){
 	setTimeout(function(){
 		notification.className = "";
 	}, 11000);
+}
+
+// animation for typing
+var stringIndex = 0, wordIndex = 0;
+var typeTimer, backTimer;
+var strings = ["this is string1", "this is string2"];
+var charArray;
+var typeDisplayer;
+var addWordPeriod = 300, removeWordPeriod = 100;
+function removeWord(){
+	if (wordIndex == 0){
+		typeDisplayer.innerHTML = "";
+		stringIndex++;
+		if (stringIndex == strings.length)
+			stringIndex = 0;
+		clearInterval(backTimer);
+		type();
+	}
+	else {
+		var tmp = typeDisplayer.innerHTML;
+		// remove the last char and '|'
+		tmp = tmp.substring(0, tmp.length - 2);
+		// add '|'
+		tmp += "|";
+		typeDisplayer.innerHTML = tmp;
+		wordIndex--;
+	}
+}
+function addWord(){
+	if (wordIndex == charArray.length){
+		backTimer = setInterval(removeWord, removeWordPeriod);
+		clearInterval(typeTimer);
+	}
+	else {
+		var tmp = typeDisplayer.innerHTML;
+		// remove '|'
+		tmp = tmp.substring(0, tmp.length - 1);
+		// add a char and '|'
+		tmp += charArray[wordIndex] + '|';
+		// put back
+		typeDisplayer.innerHTML = tmp;
+		wordIndex++;
+	}
+}
+function type(){
+	charArray = strings[stringIndex].split("");
+	wordIndex = 0;
+	typeTimer = setInterval(addWord, addWordPeriod);
+}
+function startType(){
+	typeDisplayer = document.getElementById("typeDisplayer");
+	type();
 }

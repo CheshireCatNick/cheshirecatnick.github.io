@@ -36,23 +36,11 @@
 
 <div class="content" id="footer" include-html="./html/footer.html"></div>
 <script>
-function main(){
-	var string = "this is a test";
-	var stringArray = string.split("");
-	var index = 0;
-
-	function type(){
-		var typeDisplayer = document.getElementById("typeDisplayer");
-		typeDisplayer.innerHTML += stringArray[index];
-		index++;
-	}
-	setInterval(type, 300);
-}
 includeHTML();
 // wait for all html
 setTimeout(startProgressBar, 2000);
 setTimeout(connectToMailSender, 2000);
-setTimeout(main, 2000);
+setTimeout(startType, 2000);
 </script>
 </body>
 </html>

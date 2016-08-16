@@ -36,3 +36,28 @@ function moveProgressBar(){
 	H.style.width = "1%";
 	timer = setInterval(function(){addWidth(C, J, P, H, CDelta, JDelta, PDelta, HDelta, maxC);}, addWidthPeriod);
 }
+
+function startProgressBar(){
+	var timePeriod = 8000;
+	setInterval(moveProgressBar, timePeriod);
+}
+
+function showNotification(msg, type){
+	var notification = document.getElementById("notification");
+	notification.className = "show";
+	notification.innerHTML = msg;
+	var backgroundColor, fontColor;
+	if (type == "success"){
+		backgroundColor = "#0077B5";
+		fontColor = "white";
+	}
+	else if (type == "warning"){
+		backgroundColor = "#BD362F";
+		fontColor = "white";
+	}
+	notification.style.backgroundColor = backgroundColor;
+	notification.style.color = fontColor;
+	setTimeout(function(){
+		notification.className = "";
+	}, 11000);
+}

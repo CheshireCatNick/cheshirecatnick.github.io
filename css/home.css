@@ -2,7 +2,7 @@
 	background-color: #3b5999;
 	margin-top: 60px;
 	color: white;
-	height: 600px;
+	height: auto;
 }
 #home .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

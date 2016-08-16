@@ -20,4 +20,5 @@ function includeHTML(){
       		return;
     	}
   	}
+  	ready = true;
 }

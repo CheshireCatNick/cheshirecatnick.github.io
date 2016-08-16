@@ -3,7 +3,7 @@
 <head>
 <title>Nicky's Website</title>
 <meta charset="UTF-8"> 
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="./css/font-awesome-4.6.3/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="./css/navBar.css" />
 <link rel="stylesheet" type="text/css" href="./css/content.css" />
 <link rel="stylesheet" type="text/css" href="./css/home.css" />
@@ -15,7 +15,11 @@
 
 <script src="./js/include.js"></script>
 <script src="./js/animation.js"></script>
-<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="./js/mailClient.js"></script>
+<script src="./js/socket.io-1.4.5.js"></script>
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./js/typed.js/js/typed.js"></script>
+
 <style>
 
 </style>
@@ -32,56 +36,23 @@
 
 <div class="content" id="footer" include-html="./html/footer.html"></div>
 <script>
+function main(){
+	var string = "this is a test";
+	var stringArray = string.split("");
+	var index = 0;
+
+	function type(){
+		var typeDisplayer = document.getElementById("typeDisplayer");
+		typeDisplayer.innerHTML += stringArray[index];
+		index++;
+	}
+	setInterval(type, 300);
+}
 includeHTML();
-
-var timePeriod = 8000;
-setInterval(moveProgressBar, timePeriod);
-
-var ip = "140.112.30.34";
-var port = 2147;
-var socket = io.connect("http://" + ip + ":" + port);
-socket.on("sendResult", function(result){
-	if (result == "success"){
-		showNotification("Your message has been sent. I'll reply ASAP. Thanks for your contact!",
-							"success");
-		document.getElementById("name").value = "";
-		document.getElementById("emailAddress").value = "";
-		document.getElementById("content").value = "";
-	}
-	else
-		showNotification("You sent too many emails today. Come back tomorrow : )",
-			"warning");
-});
-function send(){
-	var name = document.getElementById("name").value;
-	var emailAddress = document.getElementById("emailAddress").value;
-	var content = document.getElementById("content").value;
-	if (socket.connected)
-		socket.emit("sendEmail", name, emailAddress, content);
-	else
-		showNotification("Sorry. My mail sender is down : (<br/>Please send your message to CheshireCatNick@gmail.com",
-							"warning");
-}
-
-function showNotification(msg, type){
-	var notification = document.getElementById("notification");
-	notification.className = "show";
-	notification.innerHTML = msg;
-	var backgroundColor, fontColor;
-	if (type == "success"){
-		backgroundColor = "#0077B5";
-		fontColor = "white";
-	}
-	else if (type == "warning"){
-		backgroundColor = "#BD362F";
-		fontColor = "white";
-	}
-	notification.style.backgroundColor = backgroundColor;
-	notification.style.color = fontColor;
-	setTimeout(function(){
-		notification.className = "";
-	}, 11000);
-}
+// wait for all html
+setTimeout(startProgressBar, 2000);
+setTimeout(connectToMailSender, 2000);
+setTimeout(main, 2000);
 </script>
 </body>
 </html>

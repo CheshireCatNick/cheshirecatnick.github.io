@@ -23,3 +23,9 @@
 	outline: 0;
 	color: #2ecc71;
 }
+#footer #testMailSender {
+	color: #2ecc71;
+}
+#footer #testMailSender:hover {
+	cursor: pointer;
+}

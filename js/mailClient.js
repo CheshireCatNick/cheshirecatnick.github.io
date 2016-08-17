@@ -1,12 +1,13 @@
 var ip = "140.112.30.34";
 var port = 2147;
 var socket;
+var isSenderAlive = false;
 function connectToMailSender(){
 	socket = io.connect("http://" + ip + ":" + port);
 	socket.on("sendResult", function(result){
 		if (result == "success"){
 			showNotification("Your message has been sent. I'll reply ASAP. Thanks for your contact!",
-								"success");
+								"info");
 			document.getElementById("name").value = "";
 			document.getElementById("emailAddress").value = "";
 			document.getElementById("content").value = "";
@@ -15,6 +16,10 @@ function connectToMailSender(){
 			showNotification("You sent too many emails today. Come back tomorrow : )",
 								"warning");
 		});
+	socket.on("replyCheckAlive", function(result){
+		if (result == "alive")
+			isSenderAlive = true;
+	});
 }
 
 function send(){
@@ -50,4 +55,16 @@ function send(){
 	else
 		showNotification("Sorry. My mail sender is down : (<br/>Please send your message to CheshireCatNick@gmail.com",
 							"warning");
+}
+
+function showResult(){
+	if (isSenderAlive)
+		showNotification("Server is up!", "success");
+	else
+		showNotification("Server is down for some reason : (", "warning");
+	isSenderAlive = false;
+}
+function checkMailSender(){
+	socket.emit("checkAlive");
+	setTimeout(showResult, 3000);
 }

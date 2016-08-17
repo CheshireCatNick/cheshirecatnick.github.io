@@ -60,6 +60,10 @@ function showNotification(msg, type){
 	notification.innerHTML = msg;
 	var backgroundColor, fontColor;
 	if (type == "success"){
+		backgroundColor = "#27ae60";
+		fontColor = "black";
+	}
+	else if (type == "info"){
 		backgroundColor = "#0077B5";
 		fontColor = "white";
 	}

@@ -34,8 +34,15 @@ function send(){
 		$: ending of a string
 	*/
 	if (!reg.test(emailAddress)){
-		showNotification("Sorry. I won't be able to reply if your email address is invalid.",
-							"warning");
+		showNotification("Sorry. I won't be able to reply if your email address is invalid.", "warning");
+		return;
+	}
+	if (name.length == 0){
+		showNotification("Please leave a name. Thanks!", "warning");
+		return;
+	}
+	if (content.length == 0){
+		showNotification("You forgot to write the message.", "warning");
 		return;
 	}
 	if (socket.connected)

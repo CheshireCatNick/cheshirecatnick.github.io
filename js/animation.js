@@ -81,12 +81,19 @@ function showNotification(msg, type){
 // animation for typing
 var stringIndex = 0, wordIndex = 0, blinkCount = 0;
 var typeTimer, backTimer, stayTimer;
-var strings = ["this is my typing animation ｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡",
-				"spent me a whole afternoon working on it (#`Д´)ﾉ",
-				"better use others package next time...(๑•́ ₃ •̀๑)"];
+var strings = ["I'm a senior in NTU CSIE ｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡",
+				"I'm a programmer in a start-up company in ITRI.",
+				"I'm a team member of NTU RoboPAL.",
+				"I'm a volunteer for international students of the college of NTU CSIE and EE.",
+				"I was a network administrator in NTU CSIE.",
+				"I was a teaching assistant of network administrator training class.",
+				"I'm a fast and active learner.",
+				"I'm a team worker.",
+				"I enjoy programming ｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡",				
+				"I'm learning jazz piano. ♪♪♪"];
 var charArray;
 var typeDisplayer;
-var addWordPeriod = 150, removeWordPeriod = 80, blinkPeriod = 500;
+var addWordPeriod = 100, removeWordPeriod = 60, blinkPeriod = 500;
 var blinkTime = 8
 function removeWord(){
 	if (wordIndex == 0){

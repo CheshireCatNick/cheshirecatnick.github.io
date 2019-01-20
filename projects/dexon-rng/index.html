@@ -5,7 +5,8 @@
         integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" 
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+    <script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -58,16 +59,25 @@
         const min = parseInt(document.getElementById("min").value);
         const max = parseInt(document.getElementById("max").value) + 1;
         const result = document.getElementById("result");
-        console.log(min, max);
-        result.value = min + Math.floor(Math.random() * (max - min));
+        if (allBlocks.length == 0) {
+            result.value = "No randomness.";
+            return;
+        }
+        const seed = sha256(allBlocks[allBlocks.length - 1].randomness);
+        const randomNumber = bigInt(seed, 16);
+        const range = Math.abs(max - min);
+        const remainder = randomNumber.divmod(range).remainder.value;
+        result.value = min + remainder;
     }
-    async function getLatestBlocks(lastBlockNumber) {
+    async function getLatestBlocks() {
         const latestBlockNumber = await web3.eth.getBlockNumber();
         let blockNumbers = [];
         const blocks = [];
         for (let i = lastBlockNumber + 1; i <= latestBlockNumber; i++) {
             blocks.push(web3.eth.getBlock(i));
         }
+        console.log(lastBlockNumber, latestBlockNumber);
+        lastBlockNumber = latestBlockNumber;
         return Promise.all(blocks);
     }
     function insertBlocksTable(block) {
@@ -82,12 +92,14 @@
     }
     const web3 = new Web3();
     web3.setProvider(new web3.providers.HttpProvider('https://api-testnet.dexscan.org/v1/network/rpc'));
+    let allBlocks = [];
+    let lastBlockNumber;
     (async () => {
-        let lastBlockNumber = await web3.eth.getBlockNumber();
+        lastBlockNumber = await web3.eth.getBlockNumber();
         setInterval(async () => {
-            const blocks = await getLatestBlocks(lastBlockNumber);
+            const blocks = await getLatestBlocks();
             if (blocks.length > 0) {
-                lastBlockNumber = blocks[blocks.length - 1].number;
+                allBlocks = allBlocks.concat(blocks);
                 blocks.forEach(block => insertBlocksTable(block));
             }
         }, 1000);

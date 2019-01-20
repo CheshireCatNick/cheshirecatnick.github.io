@@ -1,0 +1,105 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" 
+        integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" 
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron" style="background: #954A97">
+            <h1 class="display-4 text-white">DEXON RNG</h1>
+            <p class="lead text-white">Random number generator using on-chain randomness from DEXON.</p>
+        </div>
+    </div>
+    <div class="container">
+    <h3>Get a random number:</h3>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">min</span>
+        </div>
+        <input type="text" class="form-control" value="0" placeholder="0" aria-label="0" aria-describedby="basic-addon1" id="min">
+    </div>
+    <div class="input-group mb-3">     
+        <div class="input-group-prepend">
+            <span class="input-group-text">max</span>
+        </div>
+        <input type="text" class="form-control" value="100" placeholder="100" aria-label="100" aria-describedby="basic-addon1" id="max">
+        <button type="button" class="btn" style="border-color: #954A97; color: #954A97" onclick="getRN()">Generate</button>
+    </div>
+    <div class="input-group mb-3">     
+            <div class="input-group-prepend">
+                <span class="input-group-text">result</span>
+            </div>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" id="result">
+    </div>
+    </div>
+    <div class="container">
+    <table class="table table-striped table-scroll" id="blocks-table">
+        <thead>
+            <tr>
+            <th scope="col">Block Height</th>
+            <th scope="col">Block Hash</th>
+            <th scope="col">Randomness</th>
+            </tr>
+        </thead>
+        <tbody style="overflow: auto; height: 200px">
+        </tbody>
+    </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+<script>
+    function getRN() {
+        const min = parseInt(document.getElementById("min").value);
+        const max = parseInt(document.getElementById("max").value) + 1;
+        const result = document.getElementById("result");
+        console.log(min, max);
+        result.value = min + Math.floor(Math.random() * (max - min));
+    }
+    async function getLatestBlocks(lastBlockNumber) {
+        const latestBlockNumber = await web3.eth.getBlockNumber();
+        let blockNumbers = [];
+        const blocks = [];
+        for (let i = lastBlockNumber + 1; i <= latestBlockNumber; i++) {
+            blocks.push(web3.eth.getBlock(i));
+        }
+        return Promise.all(blocks);
+    }
+    function insertBlocksTable(block) {
+        const blocksTable = document.getElementById("blocks-table");
+        const row = blocksTable.insertRow(1);
+        const cellBlockNumber = row.insertCell(0);
+        const cellBlockHash = row.insertCell(1);
+        const cellRandomness = row.insertCell(2);
+        cellBlockNumber.innerHTML = block.number;
+        cellBlockHash.innerHTML = block.hash;
+        cellRandomness.innerHTML = block.randomness;
+    }
+    const web3 = new Web3();
+    web3.setProvider(new web3.providers.HttpProvider('https://api-testnet.dexscan.org/v1/network/rpc'));
+    (async () => {
+        let lastBlockNumber = await web3.eth.getBlockNumber();
+        setInterval(async () => {
+            const blocks = await getLatestBlocks(lastBlockNumber);
+            if (blocks.length > 0) {
+                lastBlockNumber = blocks[blocks.length - 1].number;
+                blocks.forEach(block => insertBlocksTable(block));
+            }
+        }, 1000);
+    })();
+    
+</script>
+<style>
+    .table-scroll {
+        display: block;
+        max-height: 500px;
+        overflow-y: auto;
+        font-size: 15px;
+    }
+</style>
+</html>

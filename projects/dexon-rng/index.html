@@ -28,7 +28,7 @@
             <span class="input-group-text">max</span>
         </div>
         <input type="text" class="form-control" value="100" placeholder="100" aria-label="100" aria-describedby="basic-addon1" id="max">
-        <button type="button" class="gen-btn btn" onclick="getRN()">Generate</button>
+        <button type="button" class="gen-btn btn" onclick="getRN(allBlocks)">Generate</button>
     </div>
     <div class="input-group mb-3">     
             <div class="input-group-prepend">
@@ -61,7 +61,7 @@
     let allBlocks = [];
     let lastBlockNumber;
 
-    function getRN() {
+    function getRN(allBlocks) {
         const min = parseInt(document.getElementById("min").value);
         const max = parseInt(document.getElementById("max").value) + 1;
         const result = document.getElementById("result");

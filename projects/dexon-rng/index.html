@@ -71,7 +71,7 @@
             result.value = "No randomness.";
             return;
         }
-        const seed = sha256(window.allBlocks[allBlocks.length - 1].randomness);
+        const seed = sha256(window.allBlocks[window.allBlocks.length - 1].randomness);
         const randomNumber = bigInt(seed, 16);
         const range = Math.abs(max - min);
         const remainder = randomNumber.mod(range).toJSNumber();

@@ -56,11 +56,11 @@
 </body>
 <script>
     function getRN() {
-        alert('clicked');
         const min = parseInt(document.getElementById("min").value);
         const max = parseInt(document.getElementById("max").value) + 1;
         const result = document.getElementById("result");
         if (allBlocks.length == 0) {
+            alert('clicked');
             result.value = "No randomness.";
             return;
         }

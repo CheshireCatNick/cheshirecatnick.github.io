@@ -58,19 +58,20 @@
 
     const web3 = new Web3();
     web3.setProvider(new web3.providers.HttpProvider('https://api-testnet.dexscan.org/v1/network/rpc'));
-    let allBlocks = [];
+    window.onload = function() {
+        window.allBlocks = [];
+    };
     let lastBlockNumber;
 
     function getRN() {
         const min = parseInt(document.getElementById("min").value);
         const max = parseInt(document.getElementById("max").value) + 1;
         const result = document.getElementById("result");
-        if (allBlocks.length == 0) {
-            alert('clicked');
+        if (window.allBlocks.length === 0) {
             result.value = "No randomness.";
             return;
         }
-        const seed = sha256(allBlocks[allBlocks.length - 1].randomness);
+        const seed = sha256(window.allBlocks[allBlocks.length - 1].randomness);
         const randomNumber = bigInt(seed, 16);
         const range = Math.abs(max - min);
         const remainder = randomNumber.divmod(range).remainder.value;
@@ -102,7 +103,7 @@
         setInterval(async () => {
             const blocks = await getLatestBlocks();
             if (blocks.length > 0) {
-                allBlocks = allBlocks.concat(blocks);
+                window.allBlocks = window.allBlocks.concat(blocks);
                 blocks.forEach(block => insertBlocksTable(block));
             }
         }, 1000);

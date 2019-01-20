@@ -46,10 +46,10 @@ function moveProgressBar(){
 }
 function startProgressBar(){
 	bars.push(new Bar("C", 90));
-	bars.push(new Bar("java", 90));
+	bars.push(new Bar("js", 90));
+	bars.push(new Bar("java", 80));
 	bars.push(new Bar("python", 80));
-	bars.push(new Bar("html", 75));
-	bars.push(new Bar("js", 65));
+	bars.push(new Bar("html", 65));
 	moveProgressBar();
 }
 
@@ -81,10 +81,11 @@ function showNotification(msg, type){
 // animation for typing
 var stringIndex = 0, wordIndex = 0, blinkCount = 0;
 var typeTimer, backTimer, stayTimer;
-var strings = ["I'm a senior in NTU CSIE ｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡",
-				"I'm a programmer in a start-up company in ITRI.",
-				"I'm a team member of NTU RoboPAL.",
-				"I'm a volunteer for international students of the college of NTU CSIE and EE.",
+var strings = ["I'm a blockchain reasearcher at DEXON foundation.",
+				"I'm a senior in NTU CSIE ｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡",
+				"I was a programmer in a start-up company in ITRI.",
+				"I was a team member of NTU RoboPAL.",
+				"I was a volunteer for international students of the college of NTU CSIE and EE.",
 				"I was a network administrator in NTU CSIE.",
 				"I was a teaching assistant of network administrator training class.",
 				"I'm a fast and active learner.",

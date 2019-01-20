@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h2>DEXON RNG</h2>
+    <div id="display"></div>
+</body>
+<script>
+    const web3 = new Web3();
+    web3.setProvider(new web3.providers.HttpProvider('https://api-testnet.dexscan.org/v1/network/rpc'));
+
+    (async () => {
+        const blockNumber = await web3.eth.getBlockNumber();
+        const block = await web3.eth.getBlock(blockNumber);
+        const result = `block #${blockNumber}, randomness: ${block.randomness}`;
+        document.getElementById("display").innerHTML = result;
+    })();
+</script>
+<style>
+    body {
+        font-family: sans-serif
+    }
+</style>
+</html>

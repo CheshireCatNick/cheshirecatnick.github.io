@@ -106,10 +106,10 @@
             result.value = "No randomness.";
             return;
         }
-        const seed = sha256(window.allBlocks[allBlocks.length - 1].randomness);
+        const seed = sha256(window.allBlocks[window.allBlocks.length - 1].randomness);
         const randomNumber = bigInt(seed, 16);
         const range = Math.abs(max - min);
-        const remainder = randomNumber.divmod(range).remainder.value;
+        const remainder = randomNumber.mod(range).toJSNumber();
         result.value = min + remainder;
     }
     async function getLatestBlocks() {
@@ -119,7 +119,6 @@
         for (let i = lastBlockNumber + 1; i <= latestBlockNumber; i++) {
             blocks.push(web3.eth.getBlock(i));
         }
-        console.log(lastBlockNumber, latestBlockNumber);
         lastBlockNumber = latestBlockNumber;
         return Promise.all(blocks);
     }

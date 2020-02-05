@@ -17,8 +17,8 @@ var blacklist;
 
 function createHttpsServer() {
 	const options = {
-		key: fs.readFileSync(config.certFile),
-		cert: fs.readFileSync(config.privateKeyFile)
+		key: fs.readFileSync(config.privateKeyFile),
+		cert: fs.readFileSync(config.certFile)
 	};
 	server = https.createServer(options, function(req, res){
 		res.writeHead(200);

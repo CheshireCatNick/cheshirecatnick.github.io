@@ -16,16 +16,16 @@ var transporter;
 var blacklist;
 
 function createHttpsServer() {
-  const options = {
-    key: fs.readFileSync("/home/nicky/https/privkey.pem"),
-    cert: fs.readFileSync("/home/nicky/https/fullchain.pem")
-  };
-  server = https.createServer(options, function(req, res){
-	res.writeHead(200);
-	res.end("Hello world\n");
-  });
-  server.listen(port, ip);
-  console.log("https server is running on " + ip + ":" + port);
+	const options = {
+		key: fs.readFileSync(config.certFile),
+		cert: fs.readFileSync(config.privateKeyFile)
+	};
+	server = https.createServer(options, function(req, res){
+		res.writeHead(200);
+		res.end("Server is alive!\n");
+	});
+	server.listen(port, ip);
+	console.log("https server is running on " + ip + ":" + port);
 }
 
 // this api needs to be updated

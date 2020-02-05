@@ -1,4 +1,4 @@
-var ip = "140.112.30.34";
+var ip = 'localhost';
 var port = 2147;
 var socket;
 var isSenderAlive = false;

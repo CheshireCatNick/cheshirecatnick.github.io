@@ -1,9 +1,9 @@
-var ip = 'localhost';
+var ip = 'fap.nctu.me';
 var port = 2147;
 var socket;
 var isSenderAlive = false;
 function connectToMailSender(){
-	socket = io.connect("http://" + ip + ":" + port);
+	socket = io.connect("https://" + ip + ":" + port);
 	socket.on("sendResult", function(result){
 		if (result == "success"){
 			showNotification("Your message has been sent. I'll reply ASAP. Thanks for your contact!",

@@ -1,6 +1,8 @@
 const config = require('../config');
 const account = config.account;
 const password = config.password;
+const fs = require('fs');
+const https = require('https');
 
 var ip = config.host;
 var port = config.port;
@@ -12,19 +14,20 @@ var socketIO = require("socket.io");
 var server;
 var transporter;
 var blacklist;
-/*
-// for https
-var fs = require("fs");
-var options = {
-			key: fs.readFileSync("./httpsFiles/privateKey.pem"),
-			cert: fs.readFileSync("./httpsFiles/cert.pem")
-		};
 
-var server = require("https").createServer(options, function(req, res){
+function createHttpsServer() {
+  const options = {
+    key: fs.readFileSync("/home/nicky/https/privkey.pem"),
+    cert: fs.readFileSync("/home/nicky/https/fullchain.pem")
+  };
+  server = https.createServer(options, function(req, res){
 	res.writeHead(200);
 	res.end("Hello world\n");
-});
-*/
+  });
+  server.listen(port, ip);
+  console.log("https server is running on " + ip + ":" + port);
+}
+
 // this api needs to be updated
 function getIPInfo(ip){
 	var option = {
@@ -122,8 +125,8 @@ function createHttpServer(){
 	server.listen(port, ip);
 	console.log("http server is running on " + ip + ":" + port);
 }
-
-createHttpServer();
+createHttpsServer();
+//createHttpServer();
 createMailSender();
 createBlacklist();
 createSocketIO();

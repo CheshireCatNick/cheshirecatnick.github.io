@@ -82,7 +82,7 @@ function showNotification(msg, type){
 // animation for typing
 var stringIndex = 0, wordIndex = 0, blinkCount = 0;
 var typeTimer, backTimer, stayTimer;
-var strings = ["I was blockchain reasearcher at DEXON foundation.",
+var strings = ["I was a blockchain reasearcher at DEXON foundation.",
 				"I graduated from CSIE, NTU.",
 				"I was a programmer in a start-up company in ITRI.",
 				"I was a team member of NTU RoboPAL.",

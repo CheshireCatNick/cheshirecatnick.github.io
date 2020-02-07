@@ -24,6 +24,7 @@ function Bar(name, max){
 		return (this.width >= this.maxWidth);
 	}
 }
+
 function addWidth(){
 	frameCount++;
 	var completion = frameCount / totalFrameNum;
@@ -81,8 +82,8 @@ function showNotification(msg, type){
 // animation for typing
 var stringIndex = 0, wordIndex = 0, blinkCount = 0;
 var typeTimer, backTimer, stayTimer;
-var strings = ["I'm a blockchain reasearcher at DEXON foundation.",
-				"I'm a senior in NTU CSIE ｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡",
+var strings = ["I was blockchain reasearcher at DEXON foundation.",
+				"I graduated from CSIE, NTU.",
 				"I was a programmer in a start-up company in ITRI.",
 				"I was a team member of NTU RoboPAL.",
 				"I was a volunteer for international students of the college of NTU CSIE and EE.",

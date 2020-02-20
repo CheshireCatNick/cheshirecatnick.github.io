@@ -42,7 +42,7 @@
 	text-align: center;
 }
 
-#skill span {
+#skill .inProgress span {
 	position: absolute;
-	left: 360px;
+	left: 310px;
 }

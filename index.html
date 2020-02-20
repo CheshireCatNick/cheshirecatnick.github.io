@@ -21,6 +21,11 @@
 <style>
 body {
     background-color: #555;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
 }
 </style>
 </head>
@@ -33,14 +38,31 @@ body {
 <div class="content" id="experience" include-html="./html/experience.html"></div>
 <div class="content" id="project" include-html="./html/project.html"></div>
 <div class="content" id="contact" include-html="./html/contact.html"></div>
-
 <div class="content" id="footer" include-html="./html/footer.html"></div>
 <script>
 includeHTML();
 // wait for all html
-setTimeout(startProgressBar, 2000);
-setTimeout(connectToMailSender, 2000);
-setTimeout(startType, 2000);
+setTimeout(startProgressBar, 1000);
+setTimeout(connectToMailSender, 1000);
+setTimeout(startType, 1000);
+setTimeout(() => {
+    // dark mode
+    const checkBox = document.getElementById('dark-mode');
+    checkBox.addEventListener('change', () => {
+        if (checkBox.checked) {
+            // light mode
+            document.body.style.background = '#FFF';
+            document.getElementById('footer').style.background = '#555';
+            document.getElementById('navBar').style.background = '#555';
+        }
+        else {
+            // dark mode
+            document.body.style.background = '#555';
+            document.getElementById('footer').style.background = '#212529';
+            document.getElementById('navBar').style.background = '#212529';
+        }
+    });
+}, 1000);
 </script>
 </body>
 </html>

@@ -95,7 +95,7 @@ var strings = ["I was a blockchain reasearcher at DEXON foundation.",
 				"I'm learning jazz piano. ♪♪♪"];
 var charArray;
 var typeDisplayer;
-var addWordPeriod = 100, removeWordPeriod = 60, blinkPeriod = 500;
+var addWordPeriod = 60, removeWordPeriod = 60, blinkPeriod = 500;
 var blinkTime = 8
 function removeWord(){
 	if (wordIndex == 0){

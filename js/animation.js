@@ -47,9 +47,9 @@ function moveProgressBar() {
 }
 function startProgressBar() {
 	bars.push(new Bar("C", 90));
+	bars.push(new Bar("python", 90));
 	bars.push(new Bar("js", 90));
 	bars.push(new Bar("java", 80));
-	bars.push(new Bar("python", 80));
 	bars.push(new Bar("go", 80));
 	bars.push(new Bar("html", 65));
 	moveProgressBar();

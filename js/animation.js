@@ -83,7 +83,7 @@ function showNotification(msg, type) {
 // animation for typing
 var stringIndex = 0, wordIndex = 0, blinkCount = 0;
 var typeTimer, backTimer, stayTimer;
-var strings = ["I am a senior backend engineer at OneDegree",
+var strings = ["I am a senior backend engineer at OneDegree.",
 	"I was a blockchain reasearcher at DEXON foundation.",
 	"I graduated from CSIE, NTU.",
 	"I was a programmer in a start-up company in ITRI.",
